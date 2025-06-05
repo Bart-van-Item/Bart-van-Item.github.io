@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experimental – Bart van Item</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/js/i18n.js"></script>
+  <script defer src="/js/script.js"></script>
+</head>
+<body class="light">
+
+  <div class="controls">
+    <button id="toggle-theme">🌙</button>
+    <button id="toggle-lang">EN</button>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1> <span data-i18n="exp_title">Experimental Zone</span></h1>
+      <p class="subtitle" data-i18n="exp_subtitle">Hier test ik dingen die nog niet af zijn.</p>
+    </header>
+
+    <section>
+      <h2 data-i18n="exp_idea">Testgebied</h2>
+      <p data-i18n="exp_note">Je hebt deze pagina waarschijnlijk handmatig bezocht. Verwacht niet dat hier alles perfect werkt.</p>
+    </section>
+
+<section>
+  <h2>Audio Test</h2>
+  <p>Klik op play om een geluid af te spelen:</p>
+  <p><strong>Liedje:</strong> Coldplay – Viva La Vida</p>
+  <p><strong>Bron (origineel):</strong> <a href="https://www.youtube.com/watch?v=dvgZkm1xWPE" target="_blank">YouTube</a></p>
+  <p>Dit is een test om te zien of audio werkt in de browser. Het bestand staat lokaal als M4A:</p>
+  <audio id="test-audio" controls>
+    <source src="/assets/audio/Coldplay - Viva La Vida.m4a" type="audio/mp4">
+    Je browser ondersteunt het audio-element niet.
+  </audio>
+</section>
+
+  </div>
+
+</body>
+</html>
