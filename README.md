@@ -2,16 +2,21 @@
 
 ## Set-up
 
-Open `index.html` in a browser, or use Live Server (in VS Code) for automatic reload while developing.
+Open `pages/index/index.html` in a browser, or use Live Server in VS Code.
 
-Or view the portfolio online at: [https://bart-van-item.github.io/](https://bart-van-item.github.io/)
+Or view it online at: [https://bart-van-item.github.io/](https://bart-van-item.github.io/)
 
 ## Structure
 
-- `index.html` – main page  
-- `css/style.css` – styles  
-- `js/script.js` – JavaScript logic  
-- `assets/images/` – images
+- `pages/` – contains all pages, each in their own folder
+  - `index/`
+    - `index.html` – main page
+    - `translations/` – language files (NL + EN)
+- `js/`
+  - `script.js` – logic (age, init)
+  - `i18n.js` – translation loader
+- `css/` – shared styles
+- `assets/images/` – images, avatars, etc.
 
 ## Contact
 
