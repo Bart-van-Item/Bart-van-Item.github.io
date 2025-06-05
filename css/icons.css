@@ -1,0 +1,12 @@
+/* Algemene icon-styling voor hergebruik */
+.icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.75;
+  transition: opacity 0.2s ease;
+  vertical-align: middle;
+}
+
+a:hover .icon {
+  opacity: 1;
+}

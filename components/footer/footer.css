@@ -1,0 +1,20 @@
+.footer {
+  margin-top: 4rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.footer-icons {
+  margin-bottom: 0.5rem;
+}
+
+.footer-icons a {
+  margin: 0 0.5rem;
+  display: inline-block;
+}
+
+.footer-text {
+  margin-top: 0.5rem;
+}

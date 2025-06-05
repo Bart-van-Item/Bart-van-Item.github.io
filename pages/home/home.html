@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <base href="/" />
   <title>Bart van Item – Portfolio</title>
   <link rel="stylesheet" href="/css/style.css" />
   <script src="/js/i18n.js"></script>
@@ -51,10 +52,33 @@
 
     <section>
       <h2 data-i18n="contact_title">Contact</h2>
-      <p>📧 bart_vi@yahoo.com</p>
-      <p>🌍 <a href="https://github.com/BART-VAN-ITEM" target="_blank">BART-VAN-ITEM</a></p>
+      <p>
+        <img src="/assets/icons/mail.svg" alt="E-mail" width="18" style="vertical-align: middle; margin-right: 6px;">
+        bart_vi@yahoo.com
+      </p>
+      <p>
+        <img src="/assets/icons/linkedin.svg" alt="LinkedIn" width="18" style="vertical-align: middle; margin-right: 6px;">
+        <a href="https://www.linkedin.com/in/bart-van-item/" target="_blank">Bart van Item</a>
+      </p>
+      <p>
+        <img src="/assets/icons/github.svg" alt="GitHub" width="18" style="vertical-align: middle; margin-right: 6px;">
+        <a href="https://github.com/Bart-van-Item" target="_blank">Bart-van-Item</a>
+      </p>
     </section>
+
+
+
   </div>
+
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch('/components/footer/footer.html')
+      .then(res => res.text())
+      .then(html => {
+        document.getElementById('footer-placeholder').innerHTML = html;
+      });
+  </script>
+  <link rel="stylesheet" href="/components/footer/footer.css">
 
 </body>
 </html>
