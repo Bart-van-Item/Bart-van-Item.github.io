@@ -1,19 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('modules/audio.html')
-    .then(res => res.text())
-    .then(html => {
-      const container = document.getElementById('test-container');
-      container.innerHTML = html;
+  const modules = ['audio', 'video'];
 
-      container.querySelectorAll('.fold-toggle').forEach(toggle => {
-        toggle.addEventListener('click', () => {
-          const section = toggle.closest('.foldable');
-          section.classList.toggle('collapsed');
+  modules.forEach(name => {
+    fetch(`modules/${name}.html`)
+      .then(res => res.text())
+      .then(html => {
+        const section = document.createElement('div');
+        section.innerHTML = html;
+        document.getElementById('test-container').appendChild(section);
 
-          toggle.textContent = toggle.textContent.includes('▾')
-            ? toggle.textContent.replace('▾', '▸')
-            : toggle.textContent.replace('▸', '▾');
+        section.querySelectorAll('.fold-toggle').forEach(toggle => {
+          toggle.addEventListener('click', () => {
+            const foldable = toggle.closest('.foldable');
+            foldable.classList.toggle('collapsed');
+
+            toggle.textContent = toggle.textContent.includes('▾')
+              ? toggle.textContent.replace('▾', '▸')
+              : toggle.textContent.replace('▸', '▾');
+          });
         });
       });
-    });
+  });
 });
