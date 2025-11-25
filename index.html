@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>3D model showcase</title>
+
+  <!-- Loads the <model-viewer> web component (Google, around 2019+, open source) -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: #f3f4f6;
+      color: #111827;
+    }
+
+    .ah-navbar {
+      height: 72px;
+      background: #00a0e2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.75rem;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2);
+    }
+
+    .ah-navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .ah-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .ah-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .ah-navbar-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .ah-navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #ffffff;
+    }
+
+    .ah-user-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.15);
+      overflow: hidden;
+    }
+
+    .ah-user-avatar img {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      object-fit: cover;
+    }
+
+    .ah-user-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .ah-user-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .ah-user-role {
+      font-size: 0.75rem;
+      opacity: 0.9;
+    }
+
+    .ah-navbar-caret {
+      font-size: 0.8rem;
+      margin-left: 0.25rem;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 1.75rem 2.5rem;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 0.25rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .subtitle {
+      margin-bottom: 1.5rem;
+      color: #4b5563;
+      font-size: 0.95rem;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    select {
+      padding: 0.4rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid #d1d5db;
+      background: #ffffff;
+      font-size: 0.95rem;
+      min-width: 220px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+    }
+
+    .viewer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    @media (max-width: 960px) {
+      .page {
+        padding: 1.25rem;
+      }
+
+      .viewer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 0.9rem;
+      padding: 0.9rem;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
+      border-top: 4px solid #00a0e2;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .card-subtitle {
+      font-size: 0.8rem;
+      color: #6b7280;
+    }
+
+    .viewer-wrapper {
+      position: relative;
+      flex: 1;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      background: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img.product-photo {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 100%;
+    }
+
+    .filename {
+      margin-top: 0.35rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <header class="ah-navbar">
+    <div class="ah-navbar-left">
+       <div class="ah-logo">
+         <img src="assets/AH_logo.png" alt="Albert Heijn logo" />
+       </div>  <!-- todo: replace logo -->
+      <span class="ah-navbar-title">3D model viewer</span>
+    </div>
+    <div class="ah-navbar-right">
+      <div class="ah-user-avatar">
+        <img src="assets/image.png" alt="Bart van Item" />
+      </div>
+      <div class="ah-user-text">
+        <div class="ah-user-name">Bart van Item</div>
+
+      </div>
+      <div class="ah-navbar-caret">▾</div>
+    </div>
+  </header>
+
+  <main class="page">
+    <h1>3D model showcase</h1>
+    <p class="subtitle">
+      Select a product to compare the original photo with the two 3D models.
+    </p>
+
+    <div class="controls">
+      <label for="productSelect">Product</label>
+      <select id="productSelect"></select>
+    </div>
+
+    <div class="viewer-grid">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Original photo</div>
+          <div class="card-subtitle">data/input</div>
+        </div>
+        <div class="viewer-wrapper">
+          <img id="photoViewer" class="product-photo" alt="Product photo" />
+        </div>
+        <div id="photoFilename" class="filename"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">hitem3d model</div>
+          <div class="card-subtitle">data/hitem3d</div>
+        </div>
+        <div class="viewer-wrapper">
+          <model-viewer
+            id="hitem3dViewer"
+            camera-controls
+            auto-rotate
+            shadow-intensity="0.6"
+            exposure="1.1"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            alt="hitem3d 3D model"
+          ></model-viewer>
+        </div>
+        <div id="hitem3dFilename" class="filename"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">meshy model</div>
+          <div class="card-subtitle">data/meshy</div>
+        </div>
+        <div class="viewer-wrapper">
+          <model-viewer
+            id="meshyViewer"
+            camera-controls
+            auto-rotate
+            shadow-intensity="0.6"
+            exposure="1.1"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            alt="meshy 3D model"
+          ></model-viewer>
+        </div>
+        <div id="meshyFilename" class="filename"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Each product uses the same base name for the image and both glb models.
+    const products = [
+      {
+        id: "AH_Bananen_tros",
+        label: "AH Bananen tros",
+        image: "data/input/AH_Bananen_tros.jpg",
+        hitem3d: "data/hitem3d/AH_Bananen_tros.glb",
+        meshy: "data/meshy/AH_Bananen_tros.glb"
+      },
+      {
+        id: "AH_Smeuige_pindakaas",
+        label: "AH Smeuige pindakaas",
+        image: "data/input/AH_Smeuïge_pindakaas.jpg",
+        hitem3d: "data/hitem3d/AH_Smeuïge_pindakaas.glb",
+        meshy: "data/meshy/AH_Smeuïge_pindakaas.glb"
+      }
+    ];
+
+    const productSelect = document.getElementById("productSelect");
+    const photoViewer = document.getElementById("photoViewer");
+    const hitem3dViewer = document.getElementById("hitem3dViewer");
+    const meshyViewer = document.getElementById("meshyViewer");
+
+    const photoFilename = document.getElementById("photoFilename");
+    const hitem3dFilename = document.getElementById("hitem3dFilename");
+    const meshyFilename = document.getElementById("meshyFilename");
+
+    function populateSelect() {
+      products.forEach((product, index) => {
+        const option = document.createElement("option");
+        option.value = product.id;
+        option.textContent = product.label || product.id;
+        if (index === 0) {
+          option.selected = true;
+        }
+        productSelect.appendChild(option);
+      });
+    }
+
+    function loadProduct(id) {
+      const product = products.find(p => p.id === id);
+      if (!product) {
+        return;
+      }
+
+      photoViewer.src = product.image;
+      hitem3dViewer.src = product.hitem3d;
+      meshyViewer.src = product.meshy;
+
+      photoFilename.textContent = product.image;
+      hitem3dFilename.textContent = product.hitem3d;
+      meshyFilename.textContent = product.meshy;
+    }
+
+    productSelect.addEventListener("change", event => {
+      loadProduct(event.target.value);
+    });
+
+    populateSelect();
+    if (products.length > 0) {
+      loadProduct(products[0].id);
+    }
+  </script>
+</body>
+</html>
