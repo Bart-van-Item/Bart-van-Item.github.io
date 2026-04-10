@@ -23,3 +23,4 @@ Or view it online at: [https://bart-van-item.github.io/](https://bart-van-item.g
 If you spot anything broken on the portfolio or just want to get in touch, feel free to reach out:  
 **bart_vi@yahoo.com**  
 [https://github.com/BART-VAN-ITEM](https://github.com/BART-VAN-ITEM)
+
