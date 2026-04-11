@@ -1,53 +1,89 @@
-// Geboortedatum: 2001-10-18
-const birthDate = new Date(2001, 9, 18); // oktober = maand 9
-let currentLang = localStorage.getItem('lang') || 'nl';
-const currentPage = 'home';
+const birthDate = new Date(2001, 9, 18);
+const currentPage = "home";
+let currentLang = localStorage.getItem("lang") || "nl";
 
-function calculateAge(birthDate) {
-    const today = new Date();
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const beforeBirthday =
-        today.getMonth() < birthDate.getMonth() ||
-        (today.getMonth() === birthDate.getMonth() && today.getDate() < birthDate.getDate());
-    if (beforeBirthday) age--;
-    return age;
+function calculateAge(date) {
+  const today = new Date();
+  let age = today.getFullYear() - date.getFullYear();
+  const beforeBirthday =
+    today.getMonth() < date.getMonth() ||
+    (today.getMonth() === date.getMonth() && today.getDate() < date.getDate());
+
+  if (beforeBirthday) {
+    age -= 1;
+  }
+
+  return age;
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const ageSpan = document.getElementById('age');
-    if (ageSpan) {
-        ageSpan.textContent = calculateAge(birthDate);
-    }
+function getThemeButtonLabel(theme) {
+  const labels = {
+    nl: {
+      light: "Donkere modus",
+      dark: "Lichte modus",
+    },
+    en: {
+      light: "Dark mode",
+      dark: "Light mode",
+    },
+  };
 
-    // Herstel opgeslagen thema
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    document.body.classList.remove('light', 'dark');
-    document.body.classList.add(savedTheme);
-    document.getElementById('toggle-theme').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+  return labels[currentLang][theme];
+}
 
-    // Laad taal
-    await loadLanguage(currentLang, currentPage);
+function applyTheme(theme) {
+  document.body.classList.remove("light", "dark");
+  document.body.classList.add(theme);
+  document.documentElement.style.colorScheme = theme;
 
-    const langBtn = document.getElementById('toggle-lang');
-    const themeBtn = document.getElementById('toggle-theme');
+  const themeBtn = document.getElementById("toggle-theme");
+  if (themeBtn) {
+    const label = getThemeButtonLabel(theme);
+    themeBtn.textContent = label;
+    themeBtn.setAttribute("aria-label", label);
+  }
+}
 
-    if (langBtn) {
-        langBtn.textContent = currentLang === 'nl' ? 'EN' : 'NL';
-        langBtn.addEventListener('click', async () => {
-            currentLang = currentLang === 'nl' ? 'en' : 'nl';
-            localStorage.setItem('lang', currentLang);
-            langBtn.textContent = currentLang === 'nl' ? 'EN' : 'NL';
-            await loadLanguage(currentLang, currentPage);
-        });
-    }
+async function applyLanguage() {
+  document.documentElement.lang = currentLang;
 
-    if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
-            const isDark = document.body.classList.toggle('dark');
-            document.body.classList.toggle('light', !isDark);
-            const theme = isDark ? 'dark' : 'light';
-            localStorage.setItem('theme', theme);
-            themeBtn.textContent = isDark ? '☀️' : '🌙';
-        });
-    }
+  const langBtn = document.getElementById("toggle-lang");
+  if (langBtn) {
+    langBtn.textContent = currentLang === "nl" ? "EN" : "NL";
+  }
+
+  await loadLanguage(currentLang, currentPage);
+
+  const activeTheme = document.body.classList.contains("dark") ? "dark" : "light";
+  applyTheme(activeTheme);
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const ageSpan = document.getElementById("age");
+  if (ageSpan) {
+    ageSpan.textContent = calculateAge(birthDate);
+  }
+
+  const savedTheme = localStorage.getItem("theme") || "light";
+  applyTheme(savedTheme);
+  await applyLanguage();
+
+  const langBtn = document.getElementById("toggle-lang");
+  const themeBtn = document.getElementById("toggle-theme");
+
+  if (langBtn) {
+    langBtn.addEventListener("click", async () => {
+      currentLang = currentLang === "nl" ? "en" : "nl";
+      localStorage.setItem("lang", currentLang);
+      await applyLanguage();
+    });
+  }
+
+  if (themeBtn) {
+    themeBtn.addEventListener("click", () => {
+      const nextTheme = document.body.classList.contains("dark") ? "light" : "dark";
+      localStorage.setItem("theme", nextTheme);
+      applyTheme(nextTheme);
+    });
+  }
 });
