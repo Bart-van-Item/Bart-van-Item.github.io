@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <base href="/" />
   <title>Bart van Item – Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/components/footer/footer.css">
   <script src="/js/i18n.js"></script>
   <script defer src="/js/script.js"></script>
   <script defer src="/js/easteregg.js"></script>
@@ -17,58 +21,146 @@
     <button id="toggle-lang">EN</button>
   </div>
 
-  <div class="container">
-    <header>
-      <h1 id="site-title">Bart van Item</h1>
-      <p class="subtitle"><span id="age"></span> <span data-i18n="years">jaar</span> – Developer</p>
-    </header>
+  <!-- ── Hero ─────────────────────────────────────────────── -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge" data-i18n="hero_badge">Available for opportunities</div>
+      <h1 id="site-title">
+        <span data-i18n="hero_greeting">Hi, I'm</span><br>
+        <span class="gradient-text">Bart van Item</span>
+      </h1>
+      <p class="hero-subtitle" data-i18n="hero_subtitle">
+        I craft clean, effective web experiences. Passionate about simple design and solid code.
+      </p>
+      <a href="#projects" class="hero-cta">
+        <span data-i18n="hero_cta">View my work</span>
+        <span>↓</span>
+      </a>
+    </div>
+    <div class="scroll-hint" aria-hidden="true"></div>
+  </section>
 
-    <section>
-      <h2 data-i18n="about_title">Over mij</h2>
-      <p data-i18n="about_text">Ik bouw simpele en doeltreffende websites. Ik houd van strak ontwerp en nette code. Daarnaast blijf ik mezelf continu ontwikkelen.</p>
-    </section>
-
-    <section>
-      <h2 data-i18n="projects_title">Projecten</h2>
-      <div class="project">
-        <h3>Testproject</h3>
-        <p data-i18n="project1_text">Dit is een testdocument om te controleren of de code goed werkt.</p>
+  <!-- ── About ─────────────────────────────────────────────── -->
+  <section class="section fade-in" id="about">
+    <span class="section-label" data-i18n="about_label">About</span>
+    <h2 data-i18n="about_title">Who I am</h2>
+    <p class="section-desc" data-i18n="about_desc">
+      A developer who believes great software is simple, purposeful, and well-crafted.
+    </p>
+    <div class="about-grid stagger">
+      <div class="about-card">
+        <span class="card-icon">💻</span>
+        <h3 data-i18n="about_card1_title">Developer</h3>
+        <p data-i18n="about_card1_text">Building web experiences with clean code and thoughtful design.</p>
       </div>
-      <div class="project">
-        <h3>Portfolio Site</h3>
-        <p data-i18n="project2_text">Deze site toont mijn werk, skills en een automatische leeftijdsberekening.</p>
+      <div class="about-card">
+        <span class="card-icon">📚</span>
+        <h3 data-i18n="about_card2_title">Learner</h3>
+        <p data-i18n="about_card2_text">Continuously improving — new tech, new ideas, new challenges.</p>
       </div>
-    </section>
+      <div class="about-card">
+        <span class="card-icon">🎂</span>
+        <h3 data-i18n="about_card3_title">Age</h3>
+        <p><span id="age"></span> <span data-i18n="about_card3_text">years old — born October 18, 2001.</span></p>
+      </div>
+      <div class="about-card">
+        <span class="card-icon">📍</span>
+        <h3 data-i18n="about_card4_title">Based in</h3>
+        <p data-i18n="about_card4_text">The Netherlands, available for remote work worldwide.</p>
+      </div>
+    </div>
+  </section>
 
-    <section>
-      <h2 data-i18n="skills_title">Vaardigheden</h2>
-      <ul class="skills">
-        <li>HTML & CSS</li>
-        <li>JavaScript</li>
-        <li>Responsive Design</li>
-        <li>Git & GitHub</li>
-      </ul>
-    </section>
+  <div class="divider"></div>
 
-    <section>
-      <h2 data-i18n="contact_title">Contact</h2>
-      <p>
-        <img src="/assets/icons/mail.svg" alt="E-mail" width="18" style="vertical-align: middle; margin-right: 6px;">
-        bart_vi@yahoo.com
-      </p>
-      <p>
-        <img src="/assets/icons/linkedin.svg" alt="LinkedIn" width="18" style="vertical-align: middle; margin-right: 6px;">
-        <a href="https://www.linkedin.com/in/bart-van-item/" target="_blank">Bart van Item</a>
-      </p>
-      <p>
-        <img src="/assets/icons/github.svg" alt="GitHub" width="18" style="vertical-align: middle; margin-right: 6px;">
-        <a href="https://github.com/Bart-van-Item" target="_blank">Bart-van-Item</a>
-      </p>
-    </section>
+  <!-- ── Projects ──────────────────────────────────────────── -->
+  <section class="section fade-in" id="projects">
+    <span class="section-label" data-i18n="projects_label">Work</span>
+    <h2 data-i18n="projects_title">Projects</h2>
+    <p class="section-desc" data-i18n="projects_desc">A selection of things I've built.</p>
+    <div class="projects-grid stagger">
+      <div class="project-card">
+        <h3 data-i18n="project1_name">Portfolio Site</h3>
+        <p data-i18n="project1_text">
+          My personal portfolio — featuring dark mode, Dutch/English i18n, auto age calculation, and a hidden easter egg.
+        </p>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">i18n</span>
+        </div>
+        <a href="https://github.com/Bart-van-Item/Bart-van-Item.github.io" target="_blank" class="project-link">
+          <span data-i18n="project1_link">View source</span> →
+        </a>
+      </div>
+      <div class="project-card">
+        <h3 data-i18n="project2_name">Experimental Zone</h3>
+        <p data-i18n="project2_text">
+          A hidden sandbox for testing ideas: audio, video, and other experimental browser features.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Browser APIs</span>
+          <span class="tag">Audio</span>
+          <span class="tag">Video</span>
+        </div>
+        <a href="/pages/experimental/experimental.html" class="project-link">
+          <span data-i18n="project2_link">Discover it</span> →
+        </a>
+      </div>
+    </div>
+  </section>
 
+  <div class="divider"></div>
 
+  <!-- ── Skills ────────────────────────────────────────────── -->
+  <section class="section fade-in" id="skills">
+    <span class="section-label" data-i18n="skills_label">Expertise</span>
+    <h2 data-i18n="skills_title">Skills</h2>
+    <p class="section-desc" data-i18n="skills_desc">Technologies and tools I work with.</p>
+    <div class="skills-grid stagger">
+      <div class="skill-item"><span class="skill-icon">🌐</span> HTML &amp; CSS</div>
+      <div class="skill-item"><span class="skill-icon">⚡</span> JavaScript</div>
+      <div class="skill-item"><span class="skill-icon">📱</span> Responsive Design</div>
+      <div class="skill-item"><span class="skill-icon">🐙</span> Git &amp; GitHub</div>
+      <div class="skill-item"><span class="skill-icon">🎨</span> UI Design</div>
+      <div class="skill-item"><span class="skill-icon">🔧</span> Dev Tools</div>
+    </div>
+  </section>
 
-  </div>
+  <div class="divider"></div>
+
+  <!-- ── Contact ────────────────────────────────────────────── -->
+  <section class="section fade-in" id="contact">
+    <span class="section-label" data-i18n="contact_label">Get in touch</span>
+    <h2 data-i18n="contact_title">Contact</h2>
+    <p class="section-desc" data-i18n="contact_desc">
+      Have a project in mind or just want to say hi? I'd love to hear from you.
+    </p>
+    <div class="contact-grid stagger">
+      <a href="mailto:bart_vi@yahoo.com" class="contact-card">
+        <div class="contact-icon">
+          <img src="/assets/icons/mail.svg" alt="E-mail">
+        </div>
+        <strong>Email</strong>
+        <span>bart_vi@yahoo.com</span>
+      </a>
+      <a href="https://www.linkedin.com/in/bart-van-item/" target="_blank" class="contact-card">
+        <div class="contact-icon">
+          <img src="/assets/icons/linkedin.svg" alt="LinkedIn">
+        </div>
+        <strong>LinkedIn</strong>
+        <span>Bart van Item</span>
+      </a>
+      <a href="https://github.com/Bart-van-Item" target="_blank" class="contact-card">
+        <div class="contact-icon">
+          <img src="/assets/icons/github.svg" alt="GitHub">
+        </div>
+        <strong>GitHub</strong>
+        <span>Bart-van-Item</span>
+      </a>
+    </div>
+  </section>
 
   <div id="footer-placeholder"></div>
   <script>
@@ -78,7 +170,6 @@
         document.getElementById('footer-placeholder').innerHTML = html;
       });
   </script>
-  <link rel="stylesheet" href="/components/footer/footer.css">
 
 </body>
 </html>
