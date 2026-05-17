@@ -58,6 +58,22 @@ async function applyLanguage() {
   applyTheme(activeTheme);
 }
 
+function initScrollNav() {
+  const topbar = document.querySelector(".topbar");
+  if (!topbar) return;
+
+  function onScroll() {
+    if (window.scrollY > 40) {
+      topbar.classList.add("scrolled");
+    } else {
+      topbar.classList.remove("scrolled");
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   const ageSpan = document.getElementById("age");
   if (ageSpan) {
@@ -86,4 +102,6 @@ document.addEventListener("DOMContentLoaded", async () => {
       applyTheme(nextTheme);
     });
   }
+
+  initScrollNav();
 });
