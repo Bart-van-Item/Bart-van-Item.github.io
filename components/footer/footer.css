@@ -1,20 +1,50 @@
 .footer {
-  margin-top: 4rem;
-  padding: 2rem 1rem;
-  text-align: center;
-  font-size: 0.9rem;
-  color: #666;
+  width: min(1140px, calc(100% - 2rem));
+  margin: 0 auto 2.5rem;
+  padding-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  color: var(--muted);
 }
 
 .footer-icons {
-  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
 
 .footer-icons a {
-  margin: 0 0.5rem;
-  display: inline-block;
+  display: grid;
+  place-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 1px solid var(--card-stroke);
+  border-radius: 999px;
+  background: var(--surface);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease;
 }
 
-.footer-text {
-  margin-top: 0.5rem;
+.footer-icons img {
+  display: block;
+}
+
+.footer-text p {
+  margin: 0.2rem 0;
+}
+
+.footer-text p:first-child {
+  color: var(--text);
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .footer {
+    flex-direction: column;
+    text-align: center;
+  }
 }
