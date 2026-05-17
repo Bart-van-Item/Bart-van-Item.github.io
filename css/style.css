@@ -668,10 +668,7 @@ body.dark .page-noise {
     padding-top: 0.75rem;
   }
 
-  .principles {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
+  .principles,
   .work-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -687,7 +684,6 @@ body.dark .page-noise {
     border-radius: 1.4rem;
     gap: 0.25rem;
     padding: 0.75rem 1rem 0;
-    transition: padding 300ms var(--ease-out), border-radius 300ms var(--ease-out);
   }
 
   .topbar.scrolled {
