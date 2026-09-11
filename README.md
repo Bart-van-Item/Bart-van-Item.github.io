@@ -18,7 +18,6 @@ repo root the same way.
 index.html              main page — the whole portfolio is one scrolling page
 css/
   style.css             all site styling (themes, layout, sections)
-  icons.css             shared .icon rules — currently not linked anywhere
 js/
   script.js             age, theme toggle, language toggle, scroll nav
   i18n.js               translation loader
