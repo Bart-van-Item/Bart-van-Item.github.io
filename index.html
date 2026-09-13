@@ -36,11 +36,24 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="/css/style.css" />
-  <script src="/js/i18n.js"></script>
+  <script defer src="/js/i18n.js"></script>
   <script defer src="/js/script.js"></script>
   <script defer src="/js/easteregg.js"></script>
 </head>
 <body class="light">
+  <script>
+    // Runs before first paint. script.js only applies the stored theme on
+    // DOMContentLoaded, which renders a light page first and then swaps.
+    (function () {
+      try {
+        if (localStorage.getItem("theme") === "dark") {
+          document.body.classList.replace("light", "dark");
+          document.documentElement.style.colorScheme = "dark";
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <div class="page-noise" aria-hidden="true"></div>
 
   <header class="topbar">
