@@ -39,7 +39,14 @@ function applyTheme(theme) {
   const themeBtn = document.getElementById("toggle-theme");
   if (themeBtn) {
     const label = getThemeButtonLabel(theme);
-    themeBtn.textContent = label;
+    // Write to the label span, not to the button: the button also holds the
+    // two icons, and textContent on the button would wipe them.
+    const labelEl = themeBtn.querySelector(".theme-label");
+    if (labelEl) {
+      labelEl.textContent = label;
+    }
+    // The label is hidden on narrow screens, so the button is icon-only
+    // there. aria-label carries the meaning for anyone who cannot see it.
     themeBtn.setAttribute("aria-label", label);
   }
 }
