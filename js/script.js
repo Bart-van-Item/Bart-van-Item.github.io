@@ -1,6 +1,20 @@
 const birthDate = new Date(2001, 9, 18);
 const currentPage = "home";
-let currentLang = localStorage.getItem("lang") || "nl";
+
+// The browser's own list of preferred content languages, most wanted first.
+// Not the keyboard layout: Dutch keyboards are QWERTY, so a layout says
+// nothing about whether someone reads Dutch.
+function detectLanguage() {
+  const prefs =
+    navigator.languages && navigator.languages.length
+      ? navigator.languages
+      : [navigator.language || "en"];
+
+  return prefs.some((lang) => lang.toLowerCase().startsWith("nl")) ? "nl" : "en";
+}
+
+// A stored choice wins: using the toggle once settles it for good.
+let currentLang = localStorage.getItem("lang") || detectLanguage();
 
 function calculateAge(date) {
   const today = new Date();
