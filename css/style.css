@@ -11,6 +11,13 @@
 
 html {
   scroll-behavior: smooth;
+  /* The topbar is sticky and floats over the page, so an anchor would land
+     behind it. This clears the bar plus the gap above it.
+
+     It also makes the brand link reach the real top: #home sits on <main>,
+     just below the bar, so subtracting this padding puts the target above
+     zero and the browser clamps it to the top of the page. */
+  scroll-padding-top: 5.75rem;
 }
 
 body {
@@ -690,6 +697,10 @@ body.dark .icon-moon {
 }
 
 @media (max-width: 760px) {
+  html {
+    scroll-padding-top: 5.25rem;
+  }
+
   body::before {
     background-size: 36px 36px;
   }
