@@ -1,6 +1,6 @@
 const birthDate = new Date(2001, 9, 18);
 const currentPage = "home";
-let currentLang = localStorage.getItem("lang") || "nl";
+let currentLang = localStorage.getItem("lang") || "en";
 
 function calculateAge(date) {
   const today = new Date();
