@@ -8,6 +8,27 @@
     content="Bart van Item portfolio - responsive web experiences, frontend work, and playful experiments."
   />
   <title>Bart van Item - Portfolio</title>
+  <link rel="canonical" href="https://bart-van-item.github.io/" />
+
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#f7f0e6" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#08111d" media="(prefers-color-scheme: dark)" />
+
+  <!-- Link previews. og:image must be an absolute URL, so these carry the
+       domain; they need updating if the site ever moves to its own domain. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Bart van Item" />
+  <meta property="og:url" content="https://bart-van-item.github.io/" />
+  <meta property="og:title" content="Bart van Item - Portfolio" />
+  <meta property="og:description" content="Bart van Item portfolio - responsive web experiences, frontend work, and playful experiments." />
+  <meta property="og:image" content="https://bart-van-item.github.io/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bart van Item - developer portfolio" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -15,11 +36,24 @@
     rel="stylesheet"
   />
   <link rel="stylesheet" href="/css/style.css" />
-  <script src="/js/i18n.js"></script>
+  <script defer src="/js/i18n.js"></script>
   <script defer src="/js/script.js"></script>
   <script defer src="/js/easteregg.js"></script>
 </head>
 <body class="light">
+  <script>
+    // Runs before first paint. script.js only applies the stored theme on
+    // DOMContentLoaded, which renders a light page first and then swaps.
+    (function () {
+      try {
+        if (localStorage.getItem("theme") === "dark") {
+          document.body.classList.replace("light", "dark");
+          document.documentElement.style.colorScheme = "dark";
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <div class="page-noise" aria-hidden="true"></div>
 
   <header class="topbar">
