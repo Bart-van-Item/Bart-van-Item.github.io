@@ -828,9 +828,10 @@ body.dark .icon-moon {
   border: 1px solid var(--card-stroke);
 }
 
-/* Lets "always learning, always refining" break onto two lines */
+/* Keeps "always learning, always refining" on two lines at every width:
+   the translation holds a newline after the comma, pre-line shows it */
 .signal-card-photo .signal-text {
-  max-width: 13rem;
+  white-space: pre-line;
 }
 
 @media (max-width: 760px) {
