@@ -1,6 +1,6 @@
 # Portfolio – Bart van Item
 
-Live at [bart-van-item.github.io](https://bart-van-item.github.io/).
+Live at [bartvanitem.com](https://bartvanitem.com/).
 
 ## Set-up
 
